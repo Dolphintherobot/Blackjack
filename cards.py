@@ -30,6 +30,7 @@ class Card:
         :param card: string representing a card 
         :return value: int representing the cards value
         :note: aces will default to 11
+        
         '''
         card_value = card[1:]
         numbers = [n for n in range(2,11)]
