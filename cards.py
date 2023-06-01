@@ -31,9 +31,10 @@ class Card:
         :return value: int representing the cards value
         :note: aces will default to 11
         '''
-        card_value = card[0]
+        card_value = card[1:]
         numbers = [n for n in range(2,11)]
         tens = ["J","Q","K"]
+        value = None
 
         if card_value in tens:
             value = 10
@@ -62,7 +63,7 @@ class Deck(object):
 
         for type in card_type:
             for num in numbers:
-                a_card = num + type
+                a_card = type + num
                 self.__deck.append(a_card)
         
         rn.shuffle(self.__deck)
