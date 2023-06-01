@@ -1,5 +1,7 @@
 import pygame
 import os
+import random as rn
+
 
 
 
@@ -17,3 +19,51 @@ def load_image(name):
     abs_path = os.path.join(image_dir,name)
     image = pygame.image.load(abs_path)
     return image,image.get_rect()
+
+class Card:
+    def __init__(self,card):
+        self.card = card
+        self.value = self.calc_value(card)
+
+    def calc_value(self,card):
+        '''Purpose:to determine a cards value according to blackjack rules
+        :param card: string representing a card 
+        :return value: int representing the cards value
+        :note: aces will default to 11
+        '''
+        card_value = card[0]
+        numbers = [n for n in range(2,11)]
+        tens = ["J","Q","K"]
+
+        if card_value in tens:
+            value = 10
+        elif card_value == "A":
+            value = 11
+        else:
+            for num in numbers:
+                if int(card_value) == num:
+                    value = num
+        return value
+        
+
+class Deck(object):
+    '''Purpose:used for representing a deck of cards'''
+    def __init__(self):
+        
+        self.__deck = []
+        self.load_deck()
+    
+    def load_deck(self):
+        '''Purpose:to create a new deck of cards
+        Post-conditions:will modify self.__deck contents'''
+        numbers = [str(n) for n in range(2,11)]
+        numbers.extend(["A","J","Q","K"])
+        card_type = ["S","H","D","?"]
+
+        for type in card_type:
+            for num in numbers:
+                a_card = num + type
+                self.__deck.append(a_card)
+    
+
+                
