@@ -64,6 +64,18 @@ class Deck(object):
             for num in numbers:
                 a_card = num + type
                 self.__deck.append(a_card)
+        
+        rn.shuffle(self.__deck)
+
+
+    def deal(self):
+        """Purpose:to deal out a single card
+        Post-conditions:will remove an element out the list
+        :returns a card object:"""
+
+        a_card = self.__deck[-1]
+        self.__deck.pop()
+        return Card(a_card)
     
 
                 
