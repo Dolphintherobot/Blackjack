@@ -40,6 +40,9 @@ class Card(Images):
         super().__init__(self)
         self.card = card
         self.value = self.calc_value(card)
+        image = self.image_library["test"]
+        self.image,self.rect = load_image(image,scale=0.25)
+
 
     def calc_value(self,card):
         '''Purpose:to determine a cards value according to blackjack rules
@@ -62,6 +65,31 @@ class Card(Images):
                 if int(card_value) == num:
                     value = num
         return value
+
+    def draw_image(self,screen):
+        """Purpose: to draw an image onto the screen
+        param screen: surface that represents the screen"""
+        screen.blit(self.image,self.rect.topleft)
+
+    
+    def move_image(self,screen,coordinates):
+        """Purpose: to move an image across the screen
+        param screen: surface that represents the screen
+        param coordinates: tuple representing x,y coordinates 
+        """
+        x,y = coordinates
+        n = 0
+        while self.rect.topleft <= coordinates and n!= 30:
+            n+=1
+            if self.rect.topleft[0] != x:
+                self.rect.topleft[0] += 20
+            if self.rect.topleft[1] != y:
+                self.rect.topleft[1] += 20
+            
+            self.draw_image(screen)
+            pygame.time.wait(500)
+
+
         
 
 class Deck(object):
