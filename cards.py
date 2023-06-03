@@ -97,11 +97,12 @@ class Card(Images):
 
         
 
-class Deck(object):
+class Deck(Images):
     '''Purpose:used for representing a deck of cards'''
     def __init__(self):
-        
+        super().__init__()
         self.__deck = []
+        self.image,self.rect = load_image(self.image_library["test"])
         self.load_deck()
     
     def load_deck(self):
@@ -128,5 +129,8 @@ class Deck(object):
         self.__deck.pop()
         return Card(a_card)
     
-
+    def draw_image(self,screen):
+        """Purpose: to draw an image onto the screen
+        param screen: surface that represents the screen"""
+        screen.blit(self.image,self.rect.topleft)
                 
