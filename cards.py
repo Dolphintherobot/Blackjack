@@ -17,13 +17,14 @@ def load_image(name,scale=1):
     :return:image a Suface object that represents the image
     :return:image.get_rect() a Rect object that represents image as Rect
     '''
+    # pygame.init()
     abs_path = os.path.join(image_dir,name)
     image = pygame.image.load(abs_path)
     size = image.get_size()
     size = (size[0]*scale,size[1]*scale)
 
     pygame.transform.scale(image,size)
-    image = image.convert()
+    # image = image.convert()
     return image,image.get_rect()
 
 
@@ -37,7 +38,7 @@ class Images:
 
 class Card(Images):
     def __init__(self,card):
-        super().__init__(self)
+        super().__init__()
         self.card = card
         self.value = self.calc_value(card)
         image = self.image_library["test"]
@@ -72,22 +73,26 @@ class Card(Images):
         screen.blit(self.image,self.rect.topleft)
 
     
-    def move_image(self,screen,coordinates):
+    def move_image(self,screen,coordinates,color = (0,255,0)):
         """Purpose: to move an image across the screen
         param screen: surface that represents the screen
         param coordinates: tuple representing x,y coordinates 
+        param color: color of the screen
         """
         x,y = coordinates
         n = 0
         while self.rect.topleft <= coordinates and n!= 30:
             n+=1
             if self.rect.topleft[0] != x:
-                self.rect.topleft[0] += 20
+                self.rect.topleft = self.rect.topleft[0]+20,self.rect.topleft[1]
             if self.rect.topleft[1] != y:
-                self.rect.topleft[1] += 20
+                self.rect.topleft = self.rect.topleft[0],self.rect.topleft[1]+20
             
+
+            screen.fill(color)
             self.draw_image(screen)
-            pygame.time.wait(500)
+            pygame.display.flip()
+            pygame.time.wait(100)
 
 
         
