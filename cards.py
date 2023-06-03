@@ -80,9 +80,9 @@ class Card(Images):
         param color: color of the screen
         """
         x,y = coordinates
-        n = 0
-        while self.rect.topleft <= coordinates and n!= 30:
-            n+=1
+
+        while self.rect.topleft <= coordinates:
+          
             if self.rect.topleft[0] != x:
                 self.rect.topleft = self.rect.topleft[0]+20,self.rect.topleft[1]
             if self.rect.topleft[1] != y:
@@ -92,7 +92,8 @@ class Card(Images):
             screen.fill(color)
             self.draw_image(screen)
             pygame.display.flip()
-            pygame.time.wait(100)
+            pygame.time.wait(50)
+            print("going")
 
 
         
