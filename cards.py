@@ -81,11 +81,10 @@ class Card(Images):
         """
         x,y = coordinates
 
-        while self.rect.topleft <= coordinates:
-          
-            if self.rect.topleft[0] != x:
+        while self.rect.topleft[0] < x or self.rect.topleft[1] < y:
+            if self.rect.topleft[0] < x:
                 self.rect.topleft = self.rect.topleft[0]+20,self.rect.topleft[1]
-            if self.rect.topleft[1] != y:
+            if self.rect.topleft[1] < y:
                 self.rect.topleft = self.rect.topleft[0],self.rect.topleft[1]+20
             
 
@@ -93,7 +92,7 @@ class Card(Images):
             self.draw_image(screen)
             pygame.display.flip()
             pygame.time.wait(50)
-            print("going")
+            
 
 
         
