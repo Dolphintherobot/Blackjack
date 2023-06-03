@@ -37,6 +37,7 @@ class Images:
 
 class Card(Images):
     def __init__(self,card):
+        super().__init__(self)
         self.card = card
         self.value = self.calc_value(card)
 
