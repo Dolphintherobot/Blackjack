@@ -26,7 +26,16 @@ def load_image(name,scale=1):
     image = image.convert()
     return image,image.get_rect()
 
-class Card:
+
+class Images:
+    '''Purpose: store images for other classes to inherit'''
+    def __init__(self):
+        self.image_library = {"test":"Charles.jpg"}
+
+        
+
+
+class Card(Images):
     def __init__(self,card):
         self.card = card
         self.value = self.calc_value(card)
