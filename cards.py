@@ -87,10 +87,11 @@ class Card(Images):
         screen.blit(self.image,self.rect.topleft)
 
     
-    def move_image(self,screen,coordinates,color = (0,255,0)):
+    def move_image(self,screen,coordinates,image:Images,color = (0,255,0)):
         """Purpose: to move an image across the screen
         param screen: surface that represents the screen
-        param coordinates: tuple representing x,y coordinates 
+        param coordinates: tuple representing x,y coordinates
+        :param image: Image class 
         param color: color of the screen
         """
         x,y = coordinates
@@ -104,9 +105,12 @@ class Card(Images):
 
             screen.fill(color)
             self.draw_image(screen)
+            image.update(screen)
             pygame.display.flip()
             pygame.time.wait(50)
-            
+
+        image.add_list(self.image,self.rect.topleft)
+
 
 
         
