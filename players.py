@@ -25,11 +25,6 @@ class Player:
             self.is_bust = True
     
 
-class Dealer(Player):
-    pass
-
-class User(Player):
-    pass
 
 
 
