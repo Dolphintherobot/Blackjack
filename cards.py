@@ -32,8 +32,22 @@ class Images:
     '''Purpose: store images for other classes to inherit'''
     def __init__(self):
         self.image_library = {"test":"Charles.jpg"}
+        self.image_list = []
 
-        
+    def add_list(self,image,coordinate):
+        '''Purpose: add an image to image_list
+        :param image: pygame surface representing the image
+        :param coordinate: x,y tuple representing topleft location of where you want image drawn
+        Post-condition:will add (image,coordinate) to self.image_list'''
+        self.image_list.append((image,coordinate))
+    
+    def update(self,screen):
+        '''Purpose:to drawn in all the images
+       :param screen: pygame surface wished to be drawn upon
+        '''
+        for images in self.image_list:
+            image,coord = images
+            screen.blit(image,coord)
 
 
 class Card(Images):
