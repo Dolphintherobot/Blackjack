@@ -108,6 +108,7 @@ class Deck(Images):
     def load_deck(self):
         '''Purpose:to create a new deck of cards
         Post-conditions:will modify self.__deck contents'''
+        self.__deck.clear()
         numbers = [str(n) for n in range(2,11)]
         numbers.extend(["A","J","Q","K"])
         card_type = ["S","H","D","?"]
