@@ -19,6 +19,7 @@ def start_game(player:p.Player,dealer:p.Player,deck:c.Deck,image_collection:c.Im
     :param deck: instance of deck class, representing card deck
     :param image_collection: instance of image class
     :param screen: surface to be drawn onto'''
+    image_collection.image_list.clear()
     deck.load_deck()
 
     player_coord = (600,800)
@@ -77,7 +78,7 @@ def main():
                     pass
                 if event.key == pygame.K_LCTRL or pygame.K_RCTRL:
                     start_game(user,dealer,card_deck,image_collection,screen)
-                    
+
                 if event.key == pygame.K_ESCAPE:
                     done = True
         
