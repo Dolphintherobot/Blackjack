@@ -25,7 +25,14 @@ class Player:
             self.is_bust = True
     
 
+class Dealer(Player):
 
+    def __init__(self):
+        super().__init__()
+        
+    def is_staying(self):
+        """Purpose: to check if dealer is staying or not"""
+        return self.value >= 17
 
 
 
