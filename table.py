@@ -62,7 +62,7 @@ def main():
     offset = 100
 
 
-    dealer = p.Player()
+    dealer = p.Dealer()
     user = p.Player()
     card_deck = c.Deck()
     image_collection = c.Images()
