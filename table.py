@@ -69,12 +69,32 @@ def check_winner(player:p.Player,dealer):
     else:
         return False
    
+def display_winner(player,dealer,image_collection):
+    '''Purpose:to check who is the winner of the game
+    :param player: player class representing the player
+    :param dealer: dealer class representing the dealer
+    :param image_collection: image_collection representing image storage'''
+
+    BLACK = (0,0,0)
+    font_type = pygame.font.get_default_font()
+    font = pygame.font.Font(font_type)
+    
+    if check_winner(player,dealer):
+        font = font.render("Player wins",True,BLACK)
+    else:
+        font = font.render("Dealer wins",True,BLACK)
+    
+    pygame.transform.scale(font,(300,200))
+
+    image_collection.add_list(font,(500,25))
+    
 
 def main():
     '''
     Purpose:program that runs the gui
     '''
     pygame.init()
+    pygame.font.init()
     size = (1000, 1000)
     screen = pygame.display.set_mode(size)
     done = False
@@ -116,6 +136,7 @@ def main():
                     user = p.Player()
                     card_deck = c.Deck()
                     image_collection = c.Images()
+                    has_stayed = False
                     user_coord,dealer_coord= start_game(user,dealer,card_deck,image_collection,screen)
 
                 if event.key == pygame.K_ESCAPE:
@@ -128,7 +149,9 @@ def main():
             dealer.over_21()
         
         elif has_stayed and dealer.is_staying():
-            pass
+            display_winner(user,dealer,image_collection)
+        
+        
             
 
         
