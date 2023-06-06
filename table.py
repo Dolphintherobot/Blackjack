@@ -56,6 +56,20 @@ def update_coord(coord,offset):
     return (x-offset,y)
 
 
+def check_winner(player:p.Player,dealer):
+    '''Purpose:to check who is the winner of the game
+    :param player: player class representing the player
+    :param dealer: dealer class representing the dealer
+    :return True if the player has won,False otherwise'''
+
+    if player.value > dealer.value and not player.is_bust:
+        return True
+    elif player.value < dealer.value and dealer.is_bust and not player.is_bust:
+        return True
+    else:
+        return False
+   
+
 def main():
     '''
     Purpose:program that runs the gui
@@ -92,6 +106,7 @@ def main():
                     a_card = hit(user,card_deck)
                     a_card.move_image(screen,user_coord,image_collection)
                     user_coord = update_coord(user_coord,offset)
+                    user.over_21()
                     
                 if event.key == pygame.K_r:
                     
@@ -110,6 +125,7 @@ def main():
             a_card = hit(dealer,card_deck)
             a_card.move_image(screen,dealer_coord,image_collection)
             dealer_coord = update_coord(dealer_coord,offset)
+            dealer.over_21()
         
         elif has_stayed and dealer.is_staying():
             pass
