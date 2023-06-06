@@ -6,10 +6,15 @@ def hit(a_player,deck):
     '''Purpose:to deal another card to an instance of Players class
     :param a_player: an instance of Player class
     :param deck: an instance of Deck class
+    :return card: class of Card
     '''
     card = deck.deal()
     a_player.add_card(card)
     a_player.over_21()
+
+    return card
+
+
 
 
 def start_game(player:p.Player,dealer:p.Player,deck:c.Deck,image_collection:c.Images,screen):
@@ -18,7 +23,8 @@ def start_game(player:p.Player,dealer:p.Player,deck:c.Deck,image_collection:c.Im
     :param dealer: instance of player class, representing the dealer
     :param deck: instance of deck class, representing card deck
     :param image_collection: instance of image class
-    :param screen: surface to be drawn onto'''
+    :param screen: surface to be drawn onto
+    :return: players and dealers coordinates for next card to be moved to'''
     image_collection.image_list.clear()
     deck.load_deck()
 
@@ -37,6 +43,8 @@ def start_game(player:p.Player,dealer:p.Player,deck:c.Deck,image_collection:c.Im
         player.add_card(player_card)
         dealer.add_card(dealer_card)
 
+    return player_coord,dealer_coord
+
 
 
 
@@ -51,6 +59,7 @@ def main():
     done = False
     clock = pygame.time.Clock()
     GREEN = (0,255,0)
+    offset = 100
 
 
     dealer = p.Player()
@@ -71,13 +80,14 @@ def main():
                 done = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    #hit
+                    a_card = hit(user,card_deck)
+                    a_card.move_image(screen,user_coord,image_collection)
                     pass
                 if event.key == pygame.K_LSHIFT or pygame.K_RSHIFT:
                     #stay
                     pass
                 if event.key == pygame.K_LCTRL or pygame.K_RCTRL:
-                    start_game(user,dealer,card_deck,image_collection,screen)
+                   user_coord,dealer_coord= start_game(user,dealer,card_deck,image_collection,screen)
 
                 if event.key == pygame.K_ESCAPE:
                     done = True
