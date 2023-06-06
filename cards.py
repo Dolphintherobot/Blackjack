@@ -17,21 +17,26 @@ def load_image(name,scale=1):
     :return:image a Suface object that represents the image
     :return:image.get_rect() a Rect object that represents image as Rect
     '''
-    # pygame.init()
+    
     abs_path = os.path.join(image_dir,name)
     image = pygame.image.load(abs_path)
     size = image.get_size()
     size = (size[0]*scale,size[1]*scale)
+    
 
-    pygame.transform.scale(image,size)
-    # image = image.convert()
+    image = pygame.transform.scale(image,size)
+    image = image.convert()
     return image,image.get_rect()
 
 
 class Images:
     '''Purpose: store images for other classes to inherit'''
     def __init__(self):
-        self.image_library = {"test":"Charles.jpg"}
+        self.image_library = {
+            "test":"Charles.jpg",
+            "back":"card_back.png"
+
+        }
         self.image_list = []
 
     def add_list(self,image,coordinate):
@@ -56,7 +61,7 @@ class Card(Images):
         self.card = card
         self.value = self.calc_value(card)
         image = self.image_library["test"]
-        self.image,self.rect = load_image(image,scale=0.25)
+        self.image,self.rect = load_image(image,scale=0.4)
 
 
     def calc_value(self,card):
@@ -120,7 +125,7 @@ class Deck(Images):
     def __init__(self):
         super().__init__()
         self.__deck = []
-        self.image,self.rect = load_image(self.image_library["test"])
+        self.image,self.rect = load_image(self.image_library["back"],scale= 0.25)
         self.load_deck()
     
     def load_deck(self):
@@ -129,7 +134,7 @@ class Deck(Images):
         self.__deck.clear()
         numbers = [str(n) for n in range(2,11)]
         numbers.extend(["A","J","Q","K"])
-        card_type = ["S","H","D","?"]
+        card_type = ["S","H","D","C"]
 
         for type in card_type:
             for num in numbers:
