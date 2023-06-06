@@ -46,7 +46,14 @@ def start_game(player:p.Player,dealer:p.Player,deck:c.Deck,image_collection:c.Im
     return player_coord,dealer_coord
 
 
+def update_coord(coord,offset):
+    """Purpose:to modify coordinates so that the next card can go into its proper place
+    :param coord: x,y tuple
+    :param:offset,int representing how much you want to subtract x by
+    :return new_coords: tuple that modifies x value"""
 
+    x,y = coord
+    return (x-offset,y)
 
 
 def main():
@@ -66,6 +73,7 @@ def main():
     user = p.Player()
     card_deck = c.Deck()
     image_collection = c.Images()
+    has_stayed = False
     
     
     
@@ -82,16 +90,34 @@ def main():
                 if event.key == pygame.K_SPACE:
                     a_card = hit(user,card_deck)
                     a_card.move_image(screen,user_coord,image_collection)
-                    pass
-                if event.key == pygame.K_LSHIFT or pygame.K_RSHIFT:
-                    #stay
-                    pass
-                if event.key == pygame.K_LCTRL or pygame.K_RCTRL:
-                   user_coord,dealer_coord= start_game(user,dealer,card_deck,image_collection,screen)
+                    user_coord = update_coord(user_coord,offset)
+                    print("a")
+                    
+                if event.key == pygame.K_r:
+                    print("c")
+                    has_stayed = True 
+                if event.key == pygame.K_s:
+                    print("b")
+                    dealer = p.Dealer()
+                    user = p.Player()
+                    card_deck = c.Deck()
+                    image_collection = c.Images()
+                    user_coord,dealer_coord= start_game(user,dealer,card_deck,image_collection,screen)
 
                 if event.key == pygame.K_ESCAPE:
                     done = True
         
+        if has_stayed and not dealer.is_staying():
+            print(dealer.is_staying(),dealer.value)
+            print(has_stayed and not dealer.is_staying())
+            a_card = hit(dealer,card_deck)
+            a_card.move_image(screen,dealer_coord,image_collection)
+            dealer_coord = update_coord(dealer_coord,offset)
+        
+        elif not (has_stayed and not dealer.is_staying()):
+            print(user.value,dealer.value)
+            
+
         
         screen.fill(GREEN)
         image_collection.update(screen)
