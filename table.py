@@ -74,7 +74,8 @@ def main():
     card_deck = c.Deck()
     image_collection = c.Images()
     has_stayed = False
-    
+
+
     
     
 
@@ -91,13 +92,11 @@ def main():
                     a_card = hit(user,card_deck)
                     a_card.move_image(screen,user_coord,image_collection)
                     user_coord = update_coord(user_coord,offset)
-                    print("a")
                     
                 if event.key == pygame.K_r:
-                    print("c")
+                    
                     has_stayed = True 
                 if event.key == pygame.K_s:
-                    print("b")
                     dealer = p.Dealer()
                     user = p.Player()
                     card_deck = c.Deck()
@@ -108,14 +107,12 @@ def main():
                     done = True
         
         if has_stayed and not dealer.is_staying():
-            print(dealer.is_staying(),dealer.value)
-            print(has_stayed and not dealer.is_staying())
             a_card = hit(dealer,card_deck)
             a_card.move_image(screen,dealer_coord,image_collection)
             dealer_coord = update_coord(dealer_coord,offset)
         
-        elif not (has_stayed and not dealer.is_staying()):
-            print(user.value,dealer.value)
+        elif has_stayed and dealer.is_staying():
+            pass
             
 
         
