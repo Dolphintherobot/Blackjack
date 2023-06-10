@@ -27,7 +27,7 @@ def start_game(player:p.Player,dealer:p.Player,deck:c.Deck,image_collection:c.Im
     :return: players and dealers coordinates for next card to be moved to'''
     image_collection.image_list.clear()
     deck.load_deck()
-
+    image_collection.add_list(deck.image,(0,0))
     player_coord = (600,800)
     dealer_coord = (600,400)
     n = 0
@@ -85,7 +85,6 @@ def display_winner(player,dealer,image_collection):
         font = font.render("Dealer wins",True,BLACK)
     
     pygame.transform.scale(font,(300,200))
-
     image_collection.add_list(font,(500,25))
     
 
@@ -110,17 +109,17 @@ def main():
     has_stayed = False
 
 
-    
-    
-
-    
-    # start_game(user,dealer,card_deck,image_collection,screen)
 
     
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x,y = pygame.mouse.get_pos()
+                print(x,y)
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     a_card = hit(user,card_deck)
@@ -129,8 +128,8 @@ def main():
                     user.over_21()
                     
                 if event.key == pygame.K_r:
-                    
                     has_stayed = True 
+
                 if event.key == pygame.K_s:
                     dealer = p.Dealer()
                     user = p.Player()
