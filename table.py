@@ -116,21 +116,21 @@ def main():
             if event.type == pygame.QUIT:
                 done = True
             
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                x,y = pygame.mouse.get_pos()
-                print(x,y)
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    a_card = hit(user,card_deck)
-                    a_card.move_image(screen,user_coord,image_collection)
-                    user_coord = update_coord(user_coord,offset)
-                    user.over_21()
+                    try:
+                        a_card = hit(user,card_deck)
+                        a_card.move_image(screen,user_coord,image_collection)
+                        user_coord = update_coord(user_coord,offset)
+                        user.over_21()
+                    except:
+                        continue
                     
-                if event.key == pygame.K_r:
+                if event.key == pygame.K_LSHIFT:
                     has_stayed = True 
 
-                if event.key == pygame.K_s:
+                if event.key == pygame.K_LCTRL:
                     dealer = p.Dealer()
                     user = p.Player()
                     card_deck = c.Deck()
