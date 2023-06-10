@@ -28,8 +28,8 @@ def start_game(player:p.Player,dealer:p.Player,deck:c.Deck,image_collection:c.Im
     image_collection.image_list.clear()
     deck.load_deck()
     image_collection.add_list(deck.image,(0,0))
-    player_coord = (600,800)
-    dealer_coord = (600,400)
+    player_coord = (600,400)
+    dealer_coord = (600,200)
     n = 0
     while n != 2:
         n+=1
@@ -38,8 +38,8 @@ def start_game(player:p.Player,dealer:p.Player,deck:c.Deck,image_collection:c.Im
 
         player_card.move_image(screen,player_coord,image_collection)
         dealer_card.move_image(screen,dealer_coord,image_collection)
-        player_coord = (player_coord[0] -100,800)
-        dealer_coord = (dealer_coord[0]-100,400)
+        player_coord = (player_coord[0] -100,400)
+        dealer_coord = (dealer_coord[0]-100,200)
         player.add_card(player_card)
         dealer.add_card(dealer_card)
 
