@@ -38,8 +38,8 @@ def start_game(player:p.Player,dealer:p.Player,deck:c.Deck,image_collection:c.Im
 
         player_card.move_image(screen,player_coord,image_collection)
         dealer_card.move_image(screen,dealer_coord,image_collection)
-        player_coord = (player_coord[0] -100,400)
-        dealer_coord = (dealer_coord[0]-100,200)
+        player_coord = (player_coord[0] -125,400)
+        dealer_coord = (dealer_coord[0]-125,200)
         player.add_card(player_card)
         dealer.add_card(dealer_card)
 
@@ -99,7 +99,7 @@ def main():
     done = False
     clock = pygame.time.Clock()
     GREEN = (0,255,0)
-    offset = 100
+    offset = 125
 
 
     dealer = p.Dealer()
