@@ -74,7 +74,7 @@ class Card(Images):
         self.card = card
         self.value = self.calc_value(card)
         image = self.image_library[card[1:]]
-        self.image,self.rect = load_image(image,scale=0.4)
+        self.image,self.rect = load_image(image,scale=0.2)
 
 
     def calc_value(self,card):
