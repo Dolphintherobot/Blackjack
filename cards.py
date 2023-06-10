@@ -47,7 +47,7 @@ class Images:
             "10":"ten.png",
             "J":"jack.png",
             "Q":"queen.png",
-            "K":"King.png",
+            "K":"king.png",
 
         }
         self.image_list = []
