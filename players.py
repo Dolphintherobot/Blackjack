@@ -31,7 +31,8 @@ class Dealer(Player):
         super().__init__()
         
     def is_staying(self):
-        """Purpose: to check if dealer is staying or not"""
+        """Purpose: to check if dealer is staying or not
+        :returns True if staying,False otherwise"""
         return self.value >= 17
 
 

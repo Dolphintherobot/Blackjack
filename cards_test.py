@@ -28,6 +28,11 @@ def main():
     Purpose:program that runs the gui
     '''
     pygame.init()
+    pygame.font.init()
+    font_type = pygame.font.get_default_font()
+    font = pygame.font.Font(font_type)
+    font = font.render("hello world",True,(255,0,0))
+
     size = (1000, 1000)
     screen = pygame.display.set_mode(size)
     
@@ -50,12 +55,14 @@ def main():
                 done = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    the_card.move_image(screen,(1000,1))
+                    # the_card.move_image(screen,(1000,1))
+                    pass
 
         
-        # screen.blit(background,(0,0))
+        
         screen.fill(GREEN)
-        the_card.draw_image(screen)
+        screen.blit(font,(0,0))
+        # the_card.draw_image(screen)
     
         
         
